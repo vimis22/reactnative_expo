@@ -1,27 +1,26 @@
 import React from "react";
-import {Text, StyleSheet, View, Button, ScrollView} from 'react-native';
+import {Text, StyleSheet, View, Button} from 'react-native';
 
 interface TaskItemProps {
     title: string;
+    onPress?: () => void;
 }
 
-const TaskItem: React.FC<TaskItemProps> = ({title}) => {
-    return(
+const TaskItem: React.FC<TaskItemProps> = ({ title, onPress }) => {
+    return (
         <View style={styles.taskContainer}>
-            <View style={styles.taskContainer}>
-                <Text style={styles.taskText}>{title}</Text>
-            </View>
-            <Button title="Done" onPress={() => console.log('Done')} />
+            <Text style={styles.taskText}>{title}</Text>
+            <Button title="Done" onPress={onPress} />
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     taskContainer: {
         backgroundColor: '#6200ee',
         borderRadius: 12,
         borderWidth: 1,
-        borderColor:'#ddd',
+        borderColor: '#ddd',
         padding: 8,
         flexDirection: 'row',
         marginBottom: 5,
