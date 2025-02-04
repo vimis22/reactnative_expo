@@ -24,7 +24,7 @@ const Task3_1 = ({navigation}: any) => {
                 }} />
             </View>
 
-            <View style={{ height: 6, backgroundColor: '#6200ee', marginBottom: 10,}} />
+            <View style={styles.divider} />
 
             <FlatList
                 style={styles.tasksContainer}
@@ -67,7 +67,11 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#fff'
     },
-
+    divider: {
+        height: 6,
+        backgroundColor: '#6200ee',
+        marginBottom: 10,
+    },
     tasksContainer: {
         paddingTop: 10,
         backgroundColor: '#330099',
