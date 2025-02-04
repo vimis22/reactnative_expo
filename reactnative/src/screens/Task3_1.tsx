@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import {View, Text, StyleSheet, TextInput, Button, FlatList, SafeAreaView} from "react-native";
 import TaskItem from "../reusable_components/TaskItem";
 
 const Task3_1 = ({navigation}: any) => {
     const [tasks, setTask] = React.useState<string[]>([]);
+    const [newTasks, setNewTask] = useState<string>('');
 
     return (
         <SafeAreaView style={styles.background}>
@@ -17,10 +18,11 @@ const Task3_1 = ({navigation}: any) => {
                     style={styles.textInputfield}
                     placeholder="Enter a new task..."
                     placeholderTextColor="#aaa"
-                    onChange={text => setTask(tasks)}
+                    onChange={text => setTask(text)}
                 />
-                <Button title="Done" onPress={() => {
-                    setTask(tasks);
+                <Button title="Add" onPress={() => {
+                    setTask([...tasks, newTasks]);
+                    setNewTask("");
                 }} />
             </View>
 
