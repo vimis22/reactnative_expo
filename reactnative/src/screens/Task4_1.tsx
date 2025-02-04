@@ -16,7 +16,13 @@ const Task4_1 = ({navigation}: any) => {
         };
         loadTasks();
     });
-    
+
+    useEffect(() => {
+        const saveTasks = async() => {
+            await AsyncStorage.setItem("tasks", JSON.stringify(tasks));
+        };
+        saveTasks();
+    }, [tasks]);
     return (
         <SafeAreaView style={styles.background}>
             {/*The styling task is inserted here*/}
