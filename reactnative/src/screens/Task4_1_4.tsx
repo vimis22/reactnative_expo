@@ -6,7 +6,6 @@ import TaskItem from "../reusable_components/TaskItem";
 const Task4_1_4 = ({navigation}: any) => {
     const [tasks, setTask] = React.useState<string[]>([]);
     const [newTasks, setNewTask] = useState<string>('');
-    const [hideContainer, setHideContainer] = React.useState(false);
 
     useEffect(() => {
         const loadTasks = async () => {
@@ -24,6 +23,11 @@ const Task4_1_4 = ({navigation}: any) => {
         };
         saveTasks();
     }, [tasks]);
+
+    const removeTasks = async() => {
+        await AsyncStorage.removeItem("tasks");
+    }
+
     return (
         <SafeAreaView style={styles.background}>
             {/*The styling task is inserted here*/}
@@ -36,18 +40,13 @@ const Task4_1_4 = ({navigation}: any) => {
                     style={styles.textInputfield}
                     placeholder="Enter a new task..."
                     placeholderTextColor="#aaa"
-                    onChange={text => setTask(tasks)}
+                    onChange={text => setTask(text)}
                 />
 
                 <Button title="Add" onPress={() => {
                     setTask([...tasks, newTasks]);
                     setNewTask("");
                 }} />
-
-                <Button title="Remove" onPress={() => {
-                    setHideContainer(true);
-                }}/>
-
             </View>
 
             <View style={styles.divider} />
@@ -64,6 +63,13 @@ const Task4_1_4 = ({navigation}: any) => {
                             setTask(tasks.filter(task => task !== item));
                         }} />}
                     />
+                )
+            }
+
+            {/*Clear Button*/}
+            {
+                tasks.length > 0 && (
+                    <Button title={"Clear All Tasks"} onPress={removeTasks} />
                 )
             }
 
