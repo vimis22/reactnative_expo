@@ -3,7 +3,7 @@ import {Button, FlatList, SafeAreaView, StyleSheet, Text, TextInput, View} from 
 import TaskItem from "../reusable_components/TaskItem";
 import {useTasks} from "../contexts/tasks.context";
 
-const Overview = () => {
+const Overview = ({navigation}: any) => {
     const {tasks, addTask, clearTasks} = useTasks();
     const [newTasks, setNewTask] = useState<string>('');
 

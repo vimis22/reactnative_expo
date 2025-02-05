@@ -11,6 +11,7 @@ import Task3_1 from "./src/screens/Task3_1";
 import Task3_4_5 from "./src/screens/Task3_4_5";
 import Task4_1_4 from "./src/screens/Task4_1_4";
 import Overview from "./src/screens/Overview";
+import {TaskProvider} from "./src/contexts/tasks.context";
 
 const Drawer = createDrawerNavigator();
 export default function App() {
@@ -26,7 +27,9 @@ export default function App() {
                 <Drawer.Screen name="Task3_1" component={Task3_1} />
                 <Drawer.Screen name="Task3_4_5" component={Task3_4_5} />
                 <Drawer.Screen name="Task4_1_4" component={Task4_1_4} />
-                <Drawer.Screen name="Overview" component={Overview} />
+                  <TaskProvider>
+                      <Drawer.Screen name="Overview" component={Overview} />
+                  </TaskProvider>
               </Drawer.Navigator>
           </NavigationContainer>
       </GestureHandlerRootView>
