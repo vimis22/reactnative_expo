@@ -3,9 +3,10 @@ import {View, Text, StyleSheet, TextInput, Button, FlatList, SafeAreaView} from 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TaskItem from "../reusable_components/TaskItem";
 
-const Task4_1 = ({navigation}: any) => {
+const Task4_1_4 = ({navigation}: any) => {
     const [tasks, setTask] = React.useState<string[]>([]);
     const [newTasks, setNewTask] = useState<string>('');
+    const [hideContainer, setHideContainer] = React.useState(false);
 
     useEffect(() => {
         const loadTasks = async () => {
@@ -35,12 +36,18 @@ const Task4_1 = ({navigation}: any) => {
                     style={styles.textInputfield}
                     placeholder="Enter a new task..."
                     placeholderTextColor="#aaa"
-                    onChange={text => setTask(text)}
+                    onChange={text => setTask(tasks)}
                 />
+
                 <Button title="Add" onPress={() => {
                     setTask([...tasks, newTasks]);
                     setNewTask("");
                 }} />
+
+                <Button title="Remove" onPress={() => {
+                    setHideContainer(true);
+                }}/>
+
             </View>
 
             <View style={styles.divider} />
@@ -110,4 +117,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Task4_1
+export default Task4_1_4;

@@ -9,6 +9,7 @@ import Task2_2 from "./src/screens/Task2_2";
 import Task2_3 from "./src/screens/Task2_3";
 import Task3_1 from "./src/screens/Task3_1";
 import Task3_4_5 from "./src/screens/Task3_4_5";
+import Task4_1_4 from "./src/screens/Task4_1_4";
 
 const Drawer = createDrawerNavigator();
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
                 <Drawer.Screen name="Task2_3" component={Task2_3} />
                 <Drawer.Screen name="Task3_1" component={Task3_1} />
                 <Drawer.Screen name="Task3_4_5" component={Task3_4_5} />
+                <Drawer.Screen name="Task4_1_4" component={Task4_1_4} />
               </Drawer.Navigator>
           </NavigationContainer>
       </GestureHandlerRootView>
