@@ -15,7 +15,7 @@ const Task4_1_4 = ({navigation}: any) => {
             }
         };
         loadTasks();
-    });
+    }, []);
 
     useEffect(() => {
         const saveTasks = async() => {
@@ -25,8 +25,8 @@ const Task4_1_4 = ({navigation}: any) => {
     }, [tasks]);
 
     const removeTasks = async() => {
-        await AsyncStorage.removeItem("tasks");
-    }
+        setTask([]);
+    };
 
     return (
         <SafeAreaView style={styles.background}>
