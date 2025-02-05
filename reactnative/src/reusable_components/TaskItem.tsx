@@ -1,16 +1,18 @@
 import React from "react";
 import {Text, StyleSheet, View, Button} from 'react-native';
+import {useTasks} from "../contexts/tasks.context";
 
 interface TaskItemProps {
     title: string;
-    onPress?: () => void;
 }
 
-const TaskItem: React.FC<TaskItemProps> = ({ title, onPress }) => {
+const { removeTask } = useTasks();
+
+const TaskItem: React.FC<TaskItemProps> = ({ title}) => {
     return (
         <View style={styles.taskContainer}>
             <Text style={styles.taskText}>{title}</Text>
-            <Button title="Done" onPress={onPress} />
+            <Button title="Done" onPress={() => removeTask(title)} />
         </View>
     );
 };
