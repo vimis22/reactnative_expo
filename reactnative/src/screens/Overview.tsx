@@ -1,32 +1,11 @@
-import React, {useContext, useEffect, useState} from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, {useState} from "react";
 import {Button, FlatList, SafeAreaView, StyleSheet, Text, TextInput, View} from "react-native";
 import TaskItem from "../reusable_components/TaskItem";
+import {useTasks} from "../contexts/tasks.context";
 
 const Overview = () => {
-    const [tasks, setTask] = React.useState<string[]>([]);
+    const {tasks, addTask, clearTasks} = useTasks();
     const [newTasks, setNewTask] = useState<string>('');
-
-    useEffect(() => {
-        const loadTasks = async () => {
-            const storedTasks = await AsyncStorage.getItem("tasks");
-            if(storedTasks){
-                setTask(JSON.parse(storedTasks));
-            }
-        };
-        loadTasks();
-    }, []);
-
-    useEffect(() => {
-        const saveTasks = async() => {
-            await AsyncStorage.setItem("tasks", JSON.stringify(tasks));
-        };
-        saveTasks();
-    }, [tasks]);
-
-    const removeTasks = async() => {
-        setTask([]);
-    };
 
     return (
         <SafeAreaView style={styles.background}>
@@ -40,11 +19,11 @@ const Overview = () => {
                     style={styles.textInputfield}
                     placeholder="Enter a new task..."
                     placeholderTextColor="#aaa"
-                    onChange={text => setTask(text)}
+                    onChangeText={text => setNewTask(text)}
                 />
 
                 <Button title="Add" onPress={() => {
-                    setTask([...tasks, newTasks]);
+                    addTask(newTasks);
                     setNewTask("");
                 }} />
             </View>
@@ -58,7 +37,6 @@ const Overview = () => {
                     <FlatList
                         style={styles.tasksContainer}
                         data={tasks}
-                        keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }) => <TaskItem title={item} /> }
                     />
                 )
@@ -67,7 +45,7 @@ const Overview = () => {
             {/*Clear Button*/}
             {
                 tasks.length > 0 && (
-                    <Button title={"Clear All Tasks"} onPress={removeTasks} />
+                    <Button title={"Clear All Tasks"} onPress={clearTasks} />
                 )
             }
 

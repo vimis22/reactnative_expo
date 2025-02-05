@@ -40,7 +40,7 @@ const Task4_1_4 = ({navigation}: any) => {
                     style={styles.textInputfield}
                     placeholder="Enter a new task..."
                     placeholderTextColor="#aaa"
-                    onChange={text => setTask(text)}
+                    onChangeText={text => setNewTask(text)}
                 />
 
                 <Button title="Add" onPress={() => {
