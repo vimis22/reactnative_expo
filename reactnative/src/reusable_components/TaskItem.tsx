@@ -4,6 +4,7 @@ import {useTasks} from "../contexts/tasks.context";
 
 interface TaskItemProps {
     title: string;
+    onPress: () => void;
 }
 
 const { removeTask } = useTasks();
