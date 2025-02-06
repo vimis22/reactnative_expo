@@ -37,7 +37,7 @@ const Overview = ({navigation}: any) => {
                     <FlatList
                         style={styles.tasksContainer}
                         data={tasks}
-                        renderItem={({ item }) => <TaskItem title={item} /> }
+                        renderItem={({ item }) => <TaskItem title={item} onPress = {()=>navigation.navigate("TaskDetails", {task: item})} />}
                     />
                 )
             }
